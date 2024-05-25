@@ -1,0 +1,207 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: "Nunito Sans", Helvetica, Arial, sans-serif;
+    background-color: rgb(240, 240, 240);
+}
+.main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.mappage {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+.shoepage {
+    z-index: 2;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: #333333 2px solid;
+    background-color: rgb(240, 240, 240);
+    border-radius: 34px;
+}
+
+.shoebox {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: #e3e0e4;
+    border: #333333 2px solid;
+    border-radius: 34px;
+    overflow: hidden;
+    min-width: 500px;
+    min-height: 500px;
+}
+
+.shoedata {
+    padding: 20px;
+    margin: 20px;
+    flex: 1;
+    background-color: #e3e0e4;
+    border: #333333 2px solid;
+    border-radius: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#converse, #chewing_gum, #lacet, #trou_lacet {
+    position: absolute;
+}
+
+
+#converse {
+    z-index: 21;
+    width: 350px;
+    height: 310px;
+    filter: grayscale(100%) saturate(0%);
+    transition: top 0.3s ease, filter 0.3s ease;
+}
+
+.shoebox:hover #converse {
+    filter: grayscale(0%) saturate(250%);
+}
+
+.shoebox:hover #lacet {
+    filter: grayscale(0%) saturate(250%);
+}
+
+.shoebox:hover #trou_lacet {
+    filter: grayscale(0%) saturate(250%);
+}
+
+#converse.hovered {
+    filter: grayscale(0%) saturate(250%);
+}
+
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+#star {
+    animation: 2.5s rotate infinite;
+    animation-timing-function: linear;
+    margin: 50px auto;
+    width: 1px;
+    height: 1px;
+    transition: background 0.3s ease, width 0.3s ease, height 0.3s ease;
+    background: rgba(0, 0, 0, 0);
+}
+#star:after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease, width 0.3s ease, height 0.3s ease;
+    transform: rotate(45deg);
+}
+
+.shoebox:hover #star,
+.shoebox:hover #star:after,
+#star.hovered,
+#star.hovered:after {
+    background: gold;
+    width: 420px;
+    height: 380px;
+}
+
+#lacet {
+    z-index: 22;
+    width: 350px;
+    height: 310px;
+    filter: grayscale(100%) saturate(0%);
+    transition: top 0.3s ease, filter 0.3s ease;
+}
+
+#lacet.hovered,
+#trou_lacet.hovered {
+    filter: grayscale(0%) saturate(250%);
+    top: calc(205px - 40px);
+}
+
+#lacet.colored {
+    filter: grayscale(0%) saturate(250%);
+}
+
+#trou_lacet {
+    z-index: 22;
+    width: 350px;
+    height: 310px;
+    filter: grayscale(100%) saturate(0%);
+    transition: top 0.3s ease, filter 0.3s ease; /* Apply ease transition */
+}
+
+#trou_lacet.hovered {
+    top: calc(205px - 40px);
+    filter: grayscale(0%) saturate(250%);
+    transition: top 0.3s ease, filter 0.3s ease; /* Ensure transition properties are also applied here */
+}
+
+#trou_lacet.colored {
+    filter: grayscale(0%) saturate(250%);
+}
+
+
+#circle {
+    z-index: 21;
+    position: absolute;
+    top: 290px; 
+    left: 200px;
+    transform: translate(-50%, -50%);
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background-color: rgb(242, 217, 248);
+    transition: top 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+#circle.hovered  {
+    width: 50px;
+    height: 50px;
+    top: calc(290px - 40px);
+}
+
+#chewing_gum {
+    z-index: 20;
+    width: 87px;
+    height: 150px;
+    transition: top 0.3s ease, filter 0.3s ease;
+    filter: grayscale(100%) saturate(0%);
+    left: 120px;
+    top: 250px;
+}
+
+#chewing_gum.hovered {
+    top: calc(0px + 400px);
+    filter: grayscale(0%) saturate(250%);
+}
+
+
+#map {
+    height: 100%;
+    width: 100%;
+    filter: grayscale(80%)
+}
