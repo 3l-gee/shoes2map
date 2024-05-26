@@ -14,7 +14,7 @@ We can identify 5 categories:
 
 ## How to help with the data ?
 
-* Go to [shoe2map] (https://www.google.com/maps/d/edit?hl=fr&mid=1REnaBNvSwvU5zCNDEfFJT7n1qDuL3CM&ll=46.87649756510591%2C9.45409518357165&z=10) which is an editable map.
+* Go to [shoe2map](https://www.google.com/maps/d/edit?mid=1REnaBNvSwvU5zCNDEfFJT7n1qDuL3CM&usp=sharing) which is an editable map.
     * _It can only be edited if you are currently signed in with a Google_
 * Add a _point_ 
     * Write a label

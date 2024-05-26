@@ -72,10 +72,10 @@ const KML_FORMAT = new ol.format.KML({
     extractStyles: false,
 });
 
-const kmlUrl = 'https://www.google.com/maps/d/kml?forcekml=1&mid=1REnaBNvSwvU5zCNDEfFJT7n1qDuL3CM'
+const KML_URL = 'https://www.google.com/maps/d/kml?forcekml=1&mid=1REnaBNvSwvU5zCNDEfFJT7n1qDuL3CM'
 
 const VECTOR_SOURCE = new ol.source.Vector({
-    url: kmlUrl,
+    url: KML_URL,
     format: KML_FORMAT,
 });
 
@@ -85,20 +85,6 @@ const VECTOR_LAYER = new ol.layer.Vector({
 });
 
 
-VECTOR_SOURCE.once('change', function() {
-    if (VECTOR_SOURCE.getState() === 'ready') {
-        const loadedFeatures = VECTOR_SOURCE.getFeatures();
-        console.log('Loaded Features:');
-        loadedFeatures.forEach(function(feature, index) {
-            console.log(`Feature ${index + 1}:`);
-            console.log('Geometry:', feature.getGeometry());
-            console.log('Properties:', feature.getProperties());
-        });
-    } else {
-        console.error('Error loading KML data');
-    }
-});
-
 const MAP = new ol.Map({
     target: 'map',
     layers: [BACKROUND_LAYER, VECTOR_LAYER],
@@ -107,12 +93,12 @@ const MAP = new ol.Map({
 
 let selectedFeature = null;
 
-const selectInteraction = new ol.interaction.Select({
+const SELECT_INTERACTION = new ol.interaction.Select({
     style: SELECTED_STYLE,
     layers: [VECTOR_LAYER] // Add your vector layer here
 });
 
-MAP.addInteraction(selectInteraction);
+MAP.addInteraction(SELECT_INTERACTION);
 
 const switchHoverAndSelect = function(shoePart) {
     document.querySelectorAll('.shoe_part').forEach(part => {
