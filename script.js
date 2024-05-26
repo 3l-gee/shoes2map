@@ -67,14 +67,36 @@ const SELECTED_STYLE = function(feature) {
     });
 }
 
+const KML_FORMAT = new ol.format.KML({
+    defaultDataProjection: 'EPSG:4326',
+    extractStyles: false,
+});
+
+const kmlUrl = 'https://www.google.com/maps/d/kml?forcekml=1&mid=1REnaBNvSwvU5zCNDEfFJT7n1qDuL3CM'
 
 const VECTOR_SOURCE = new ol.source.Vector({
-    format: new ol.format.GeoJSON(),
+    url: kmlUrl,
+    format: KML_FORMAT,
 });
 
 const VECTOR_LAYER = new ol.layer.Vector({
     source: VECTOR_SOURCE,
     style : STYLE
+});
+
+
+VECTOR_SOURCE.once('change', function() {
+    if (VECTOR_SOURCE.getState() === 'ready') {
+        const loadedFeatures = VECTOR_SOURCE.getFeatures();
+        console.log('Loaded Features:');
+        loadedFeatures.forEach(function(feature, index) {
+            console.log(`Feature ${index + 1}:`);
+            console.log('Geometry:', feature.getGeometry());
+            console.log('Properties:', feature.getProperties());
+        });
+    } else {
+        console.error('Error loading KML data');
+    }
 });
 
 const MAP = new ol.Map({
@@ -114,7 +136,9 @@ const switchHoverAndSelect = function(shoePart) {
             break;
         case 'trou_lacet':
             document.getElementById('trou_lacet').classList.add('hovered');
-            document.getElementById('circle').classList.add('hovered');
+            break;
+        case 'sole':
+            document.getElementById('sole').classList.add('hovered');
             break;
         default:
             break;
@@ -130,7 +154,7 @@ MAP.on('pointermove', function (event) {
     
     if (features && features.length > 0) {
         const feature = features[0];
-        const shoePart = feature.get("shoe_part");
+        const shoePart = feature.get("description");
         switchHoverAndSelect(shoePart);
     } else {
         switchHoverAndSelect(null);
@@ -141,24 +165,12 @@ MAP.on('click', function (event) {
     const features = MAP.getFeaturesAtPixel(event.pixel);
     if (features && features.length > 0) {
         selectedFeature = features[0];
-        const shoePart = selectedFeature.get("shoe_part");
+        const shoePart = selectedFeature.get("description");
         switchHoverAndSelect(shoePart);
     } else {
         selectedFeature = null;
         switchHoverAndSelect(null);
     }
 });
-
-
-fetch('data.geojson')
-    .then(response => response.json())
-    .then(data => {
-        const features = new ol.format.GeoJSON().readFeatures(data, {
-            dataProjection: 'EPSG:4326',
-            featureProjection: 'EPSG:3857'
-        });
-        VECTOR_SOURCE.addFeatures(features);
-    })
-    .catch(error => console.error('Error loading GeoJSON file:', error));
 
 

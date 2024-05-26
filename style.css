@@ -64,7 +64,7 @@ body, html {
     align-items: center;
 }
 
-#converse, #chewing_gum, #lacet, #trou_lacet {
+#converse, #chewing_gum, #lacet, #trou_lacet, #sole {
     position: absolute;
 }
 
@@ -133,13 +133,14 @@ body, html {
     width: 350px;
     height: 310px;
     filter: grayscale(100%) saturate(0%);
-    transition: top 0.3s ease, filter 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    top: 205px;
+    left: 115px;
 }
 
-#lacet.hovered,
-#trou_lacet.hovered {
+#lacet.hovered {
     filter: grayscale(0%) saturate(250%);
-    top: calc(205px - 40px);
+    transform: translate(0px, -40px);
 }
 
 #lacet.colored {
@@ -151,37 +152,36 @@ body, html {
     width: 350px;
     height: 310px;
     filter: grayscale(100%) saturate(0%);
-    transition: top 0.3s ease, filter 0.3s ease; /* Apply ease transition */
+    transition: filter 0.3s ease, transform 0.3s ease;
+    top: 205px;
+    left: 115px;
 }
 
 #trou_lacet.hovered {
-    top: calc(205px - 40px);
     filter: grayscale(0%) saturate(250%);
-    transition: top 0.3s ease, filter 0.3s ease; /* Ensure transition properties are also applied here */
+    transform: translate(0px, -40px);
 }
 
 #trou_lacet.colored {
     filter: grayscale(0%) saturate(250%);
+    
 }
 
-
-#circle {
-    z-index: 21;
-    position: absolute;
-    top: 290px; 
-    left: 200px;
-    transform: translate(-50%, -50%);
-    width: 1px;
-    height: 1px;
-    border-radius: 50%;
-    background-color: rgb(242, 217, 248);
-    transition: top 0.3s ease, width 0.3s ease, height 0.3s ease;
+#sole {
+    z-index: 20;
+    width: 320px;
+    height: 279px;
+    filter: grayscale(100%) saturate(0%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    top: 240px;
+    left: 145px;
+    transform-origin: left center;
 }
 
-#circle.hovered  {
-    width: 50px;
-    height: 50px;
-    top: calc(290px - 40px);
+#sole.hovered {
+    filter: grayscale(0%) saturate(100%);
+    transform: rotate(15deg);
+    transform-origin: left center;
 }
 
 #chewing_gum {
