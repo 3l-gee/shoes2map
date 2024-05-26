@@ -160,3 +160,7 @@ MAP.on('click', function (event) {
 });
 
 
+document.getElementById('open-map').addEventListener('click', function() {
+    window.open('https://www.google.com/maps/d/edit?mid=1REnaBNvSwvU5zCNDEfFJT7n1qDuL3CM&usp=sharing', '_blank');
+});
+
